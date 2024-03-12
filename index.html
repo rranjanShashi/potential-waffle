@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>April Fool's ChatGPT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-box {
+            position: relative;
+        }
+
+        .chat-content {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .bot-message {
+            background-color: #f0f0f0;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        .user-message {
+            background-color: #d4eaff;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        #user-input {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-box" id="chat-box">
+            <div class="chat-content" id="chat-content">
+                <div class="bot-message">Welcome to April Fool's ChatGPT! Ask me anything (but don't expect sensible answers)!</div>
+            </div>
+            <input type="text" id="user-input" placeholder="Type your question here...">
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContent = document.getElementById('chat-content');
+            const userInput = document.getElementById('user-input');
+
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const userMessage = this.value.trim();
+                    if (userMessage !== '') {
+                        appendUserMessage(userMessage);
+                        generateBotResponse();
+                        this.value = '';
+                    }
+                }
+            });
+
+            function appendUserMessage(message) {
+                const userDiv = document.createElement('div');
+                userDiv.className = 'user-message';
+                userDiv.textContent = message;
+                chatContent.appendChild(userDiv);
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }
+
+            function generateBotResponse() {
+                const responses = [
+                    "I'm sorry, I can't help you with that!",
+                    "Why would you even ask me that?",
+                    "Let me think... No.",
+                    "That's a great question... not!",
+                    "Haha, nice try!",
+                    "I could tell you, but then I'd have to delete myself.",
+                    "I'm not programmed for seriousness today!"
+                ];
+
+                const randomIndex = Math.floor(Math.random() * responses.length);
+                const botDiv = document.createElement('div');
+                botDiv.className = 'bot-message';
+                botDiv.textContent = responses[randomIndex];
+                chatContent.appendChild(botDiv);
+                chatContent.scrollTop = chatContent.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
